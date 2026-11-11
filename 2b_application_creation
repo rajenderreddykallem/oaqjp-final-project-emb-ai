@@ -1,0 +1,12 @@
+/home/project/final_project
+theia@theiadocker-rajenderred1:/home/project/final
+_project$ python3.11
+Python 3.11.15 (main, Mar  3 2026, 09:26:23) [GCC 11.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from emotion_detection import emotion_detector
+>>> emotion_detector("I love this new technology."
+... 
+KeyboardInterrupt
+>>> emotion_detector("I love this new technology.")
+Status Code: 200
+'I love this new technology.'
