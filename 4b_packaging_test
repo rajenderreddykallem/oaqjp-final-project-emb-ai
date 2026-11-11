@@ -1,11 +1,8 @@
-theia@theiadocker-rajenderred1:/home/project/final_
-project$ python3.11
+theia@theiadocker-rajenderred1:/home/project/final_project$ python3.11
 Python 3.11.15 (main, Mar  3 2026, 09:26:23) [GCC 11.4.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
->>> from EmotionDetection import emotion_detector
->>> emotion_detector("I love this new technology.")
-Status Code: 200
-{'anger': 0.01364663, 'disgust': 0.0017160787, 'fear': 0.9719017, 'joy': 0.008986978, 'sadness': 0.055187024, 'dominant_emotion': 'fear'}
->>> emotion_detector("I hate working long hours")
+>>> from EmotionDetection.emotion_detection import emotion_detector
+>>> emotion_detector("I am very angry")
 Status Code: 200
 {'anger': 0.64949876, 'disgust': 0.03718168, 'fear': 0.00862553, 'joy': 0.05612277, 'sadness': 0.1955148, 'dominant_emotion': 'anger'}
+>>>
