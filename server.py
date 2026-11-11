@@ -8,6 +8,10 @@ def sent_detector():
     # Retrieve the text to analyze from the request arguments
     text_to_analyze = request.args.get('textToAnalyze')
 
+    # Return an error message immediately if input is missing, empty, or only whitespace
+    if not text_to_analyze or not text_to_analyze.strip():
+        return "Invalid text! Please try again!"
+
     # Pass the text to the emotion_detector function and store the response
     response = emotion_detector(text_to_analyze)
 
@@ -19,7 +23,7 @@ def sent_detector():
     sadness = response['sadness']
     dominant_emotion = response['dominant_emotion']
 
-    # Handle invalid or blank input where dominant_emotion is None
+    # Handle cases where the detector returns None (e.g., HTTP 400 from API)
     if dominant_emotion is None:
         return "Invalid text! Please try again!"
 
