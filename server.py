@@ -1,3 +1,8 @@
+"""
+Executing this function initiates the application of emotion
+detection to be executed over the Flask channel and deployed on
+localhost:5000.
+"""
 from flask import Flask, render_template, request
 from EmotionDetection import emotion_detector
 
@@ -5,17 +10,19 @@ app = Flask("Emotion Detector")
 
 @app.route("/emotionDetector")
 def sent_detector():
-    # Retrieve the text to analyze from the request arguments
+    """
+    This code receives the text from the HTML interface and 
+    runs emotion detection over it using emotion_detector()
+    function. The output returned shows the label and its confidence 
+    score for the provided text.
+    """
     text_to_analyze = request.args.get('textToAnalyze')
 
-    # Return an error message immediately if input is missing, empty, or only whitespace
     if not text_to_analyze or not text_to_analyze.strip():
         return "Invalid text! Please try again!"
 
-    # Pass the text to the emotion_detector function and store the response
     response = emotion_detector(text_to_analyze)
 
-    # Extract emotions and dominant emotion from the response
     anger = response['anger']
     disgust = response['disgust']
     fear = response['fear']
@@ -23,11 +30,9 @@ def sent_detector():
     sadness = response['sadness']
     dominant_emotion = response['dominant_emotion']
 
-    # Handle cases where the detector returns None (e.g., HTTP 400 from API)
     if dominant_emotion is None:
         return "Invalid text! Please try again!"
 
-    # Return the formatted string required by the web interface
     return (
         f"For the given statement, the system response is "
         f"'anger': {anger}, 'disgust': {disgust}, 'fear': {fear}, "
@@ -37,6 +42,10 @@ def sent_detector():
 
 @app.route("/")
 def render_index_page():
+    """
+    This function initiates the rendering of the main application
+    page over the Flask channel.
+    """
     return render_template('index.html')
 
 if __name__ == "__main__":
